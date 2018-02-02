@@ -1,5 +1,7 @@
 # Nations
 
+Angular 5 MEAN based game (for training purposes only but who knows - it might grow)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.7.
 
 ## Development server

@@ -17,6 +17,10 @@ import { AuthService } from './auth/auth.service';
 import { ApiService } from './core/api.service';
 import { UtilsService } from './core/utils.service';
 import { FilterSortService } from './core/filter-sort.service';
+import { AdminComponent } from './pages/admin/admin.component';
+import { NationComponent } from './pages/nation/nation.component';
+import { NationDetailComponent } from './pages/nation/nation-detail/nation-detail.component';
+import { EmbassyComponent } from './pages/nation/embassy/embassy.component';
 
 
 @NgModule({
@@ -26,7 +30,11 @@ import { FilterSortService } from './core/filter-sort.service';
     HeaderComponent,
     FooterComponent,
     CallbackComponent,
-    LoadingComponent
+    LoadingComponent,
+    AdminComponent,
+    NationComponent,
+    NationDetailComponent,
+    EmbassyComponent
   ],
   imports: [
     BrowserModule,

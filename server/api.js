@@ -71,6 +71,7 @@ const _nationListProjection = 'title creationDatetime viewPublic';
 
   // GET list of all nations, public and private (admin only)
   app.get('/api/nations/admin', jwtCheck, adminCheck, (req, res) => {
+  // app.get('/api/nations/admin', adminCheck, (req, res) => {
     Nation.find({}, _nationListProjection, (err, nations) => {
       let nationsArr = [];
       if (err) {

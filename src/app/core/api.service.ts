@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { AuthService } from './../auth/auth.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
 import { ENV } from './env.config';
 import { NationModel } from './models/nation.model';
 import { EmbassyModel } from './models/embassy.model';
@@ -24,7 +25,7 @@ export class ApiService {
   }
 
   // GET all nations - private and public (admin only)
-  getAdminnations$(): Observable<NationModel[]> {
+  getAdminNations$(): Observable<NationModel[]> {
     return this.http
       .get(`${ENV.BASE_API}nations/admin`, {
         headers: new HttpHeaders().set('Authorization', this._authHeader)
@@ -33,7 +34,7 @@ export class ApiService {
   }
 
   // GET an nation by ID (login required)
-  getnationById$(id: string): Observable<NationModel> {
+  getNationById$(id: string): Observable<NationModel> {
     return this.http
       .get(`${ENV.BASE_API}nation/${id}`, {
         headers: new HttpHeaders().set('Authorization', this._authHeader)
@@ -42,7 +43,7 @@ export class ApiService {
   }
 
   // GET embassys by nation ID (login required)
-  getembassysBynationId$(nationId: string): Observable<EmbassyModel[]> {
+  getEmbassysByNationId$(nationId: string): Observable<EmbassyModel[]> {
     return this.http
       .get(`${ENV.BASE_API}nation/${nationId}/embassys`, {
         headers: new HttpHeaders().set('Authorization', this._authHeader)

@@ -1,0 +1,21 @@
+<div class="card-block">
+  <h2 class="card-title text-center">Nation Details</h2>
+</div>
+
+<ul class="list-group list-group-flush">
+  <li class="list-group-item">
+    <strong>When:</strong>{{utils.nationDatesTimes(nation.startDatetime, nation.endDatetime)}}
+  </li>
+  <li class="list-group-item">
+    <strong>Where:</strong>{{nation.location}} (<a href="https://www.google.com/maps/dir//{{nation.location}}" target="_blank">get directions</a>)
+  </li>
+</ul>
+
+<p
+  *ngIf="nation.description"
+  class="card-block lead"
+  [innerHTML]="nation.description"></p>
+
+<div *ngIf="auth.isAdmin" class="card-footer text-right small">
+  <a [routerLink]="['/admin/nation/update', nation._id]">Edit</a>
+</div>

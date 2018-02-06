@@ -1,0 +1,48 @@
+<app-loading *ngIf="loading"></app-loading>
+
+<ng-template [ngIf]="utils.isLoaded(loading)">
+  <h1 class="text-center">{{pageTitle}}</h1>
+  <!-- Nation -->
+  <ng-template [ngIf]="nation">
+    <!-- Nation is over -->
+    <p *ngIf="nationPast" class="alert alert-danger">
+      <strong>This nation is over.</strong>
+    </p>
+
+    <div class="card">
+      <!-- Nation tab navigation -->
+      <div class="card-header">
+        <ul class="nav nav-tabs card-header-tabs">
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              [routerLink]="[]"
+              [queryParams]="{tab: 'details'}"
+              [ngClass]="{'active': utils.tabIs(tab, 'details')}">Details</a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              [routerLink]="[]"
+              [queryParams]="{tab: 'embassy'}"
+              [ngClass]="{'active': utils.tabIs(tab, 'embassy')}">RSVP</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Nation detail tab -->
+      <app-nation-detail
+        *ngIf="utils.tabIs(tab, 'details')"
+        [nation]="nation"></app-nation-detail>
+
+      <!-- Nation RSVP tab -->
+      <app-embassy
+        *ngIf="utils.tabIs(tab, 'embassy')"></app-embassy>
+    </div>
+  </ng-template>
+
+  <!-- Error loading nations -->
+  <p *ngIf="error" class="alert alert-danger">
+    <strong>Oops!</strong> There was an error retrieving information for this nation.
+  </p>
+</ng-template>

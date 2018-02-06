@@ -1,0 +1,32 @@
+{
+	"_id" : ObjectId("5a798d649c50fd24b8024037"),
+	"creationDatetime" : ISODate("2017-05-05T01:00:00.000+03:00"),
+	"description" : "This is Test Nation 1.",
+	"location" : "Home",
+	"title" : "Test Nation 1",
+	"viewPublic" : true
+},
+{
+	"_id" : ObjectId("5a798d649c50fd24b8024038"),
+	"creationDatetime" : ISODate("2018-01-13T02:00:00.000+02:00"),
+	"description" : "This is Test Nation 2.",
+	"location" : "Seattle, WA",
+	"title" : "Test Nation 2",
+	"viewPublic" : true
+},
+{
+	"_id" : ObjectId("5a798d649c50fd24b8024039"),
+	"creationDatetime" : ISODate("2018-01-14T02:00:00.000+02:00"),
+	"description" : "This is Test Nation 3.",
+	"location" : "Plovdiv, Bulgaria",
+	"title" : "Test Nation 3",
+	"viewPublic" : true
+},
+{
+	"_id" : ObjectId("5a798d649c50fd24b802403a"),
+	"creationDatetime" : ISODate("2018-01-15T02:00:00.000+02:00"),
+	"description" : "This is Test Nation 4.",
+	"location" : "Sofia, Bulgaria",
+	"title" : "Test Nation 4",
+	"viewPublic" : false
+},

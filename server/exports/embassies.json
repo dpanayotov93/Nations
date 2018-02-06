@@ -1,0 +1,29 @@
+{
+	"_id" : ObjectId("5a798f889c50fd24b802403e"),
+	"attending" : true,
+	"comments" : "Report for troll",
+	"guests" : 3,
+	"nationId" : "5a798d649c50fd24b8024037",
+	"userId" : "101201963894819883927"
+},
+{
+	"_id" : ObjectId("5a798f889c50fd24b802403f"),
+	"attending" : false,
+	"comments" : "GG NO RE",
+	"nationId" : "5a798d649c50fd24b8024038",
+	"userId" : "108121521433327017725"
+},
+{
+	"_id" : ObjectId("5a798f889c50fd24b8024040"),
+	"attending" : true,
+	"guests" : 2,
+	"nationId" : "5a798d649c50fd24b8024039",
+	"userId" : "112491913714214525497"
+},
+{
+	"_id" : ObjectId("5a798f889c50fd24b8024041"),
+	"attending" : true,
+	"guests" : 2,
+	"nationId" : "5a798d649c50fd24b802403a",
+	"userId" : "5a798e03ebf64a46ecdd3002"
+},

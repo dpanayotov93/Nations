@@ -104,7 +104,7 @@ const _nationListProjection = 'title creationDatetime viewPublic';
  // GET Embassies by nation ID
   // app.get('/api/nation/:nationId/embassies', jwtCheck, (req, res) => {
   app.get('/api/nation/:nationId/embassies', (req, res) => {
-    Embassy.find({eventId: req.params.eventId}, (err, embassies) => {
+    Embassy.find({nationId: req.params.nationId}, (err, embassies) => {
       let embassiesArr = [];
       if (err) {
         return res.status(500).send({message: err.message});
@@ -116,6 +116,59 @@ const _nationListProjection = 'title creationDatetime viewPublic';
       }
       res.send(embassiesArr);
     });
-  });  
+  });
+
+  // POST a new Embassy
+  app.post('/api/embassy/new', jwtCheck, (req, res) => {
+    Embassy.findOne({nationId: req.body.nationId, userId: req.body.userId}, (err, existingEmbassy) => {
+      if (err) {
+        return res.status(500).send({message: err.message});
+      }
+      if (existingEmbassy) {
+        return res.status(409).send({message: 'You have already Embassied to this nation.'});
+      }
+      const embassy = new Embassy({
+        userId: req.body.userId,
+        name: req.body.name,
+        nationId: req.body.nationId,
+        attending: req.body.attending,
+        guests: req.body.guests,
+        comments: req.body.comments
+      });
+      embassy.save((err) => {
+        if (err) {
+          return res.status(500).send({message: err.message});
+        }
+        res.send(embassy);
+      });
+    });
+  });
+
+ // PUT (edit) an existing Embassy
+ app.put('/api/embassy/:id', jwtCheck, (req, res) => {
+  Embassy.findById(req.params.id, (err, embassy) => {
+    if (err) {
+      return res.status(500).send({message: err.message});
+    }
+    if (!embassy) {
+      return res.status(400).send({message: 'Embassy not found.'});
+    }
+    if (embassy.userId !== req.user.sub) {
+      return res.status(401).send({message: 'You cannot edit someone else\'s Embassy.'});
+    }
+    embassy.name = req.body.name;
+    embassy.attending = req.body.attending;
+    embassy.guests = req.body.guests;
+    embassy.comments = req.body.comments;
+
+    embassy.save(err => {
+      if (err) {
+        return res.status(500).send({message: err.message});
+      }
+      res.send(embassy);
+    });
+  });
+});
+
 
 };

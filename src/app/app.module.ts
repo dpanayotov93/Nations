@@ -41,13 +41,14 @@ import { EmbassyComponent } from './pages/nation/embassy/embassy.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [
-    Title, 
-    AuthService, 
-    ApiService, 
-    UtilsService, 
+    Title,
+    AuthService,
+    ApiService,
+    UtilsService,
     FilterSortService,
     DatePipe
   ],

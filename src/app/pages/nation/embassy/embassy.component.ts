@@ -4,13 +4,14 @@ import { ApiService } from './../../../core/api.service';
 import { UtilsService } from './../../../core/utils.service';
 import { FilterSortService } from './../../../core/filter-sort.service';
 import { EmbassyModel } from './../../../core/models/embassy.model';
+import { expandCollapse } from './../../../core/expand-collapse.animation';
 import { Subscription } from 'rxjs/Subscription';
-
 
 @Component({
   selector: 'app-embassy',
   templateUrl: './embassy.component.html',
-  styleUrls: ['./embassy.component.scss']
+  styleUrls: ['./embassy.component.scss'],
+  animations: [expandCollapse]
 })
 export class EmbassyComponent implements OnInit, OnDestroy {
   @Input() nationId: string;

@@ -45,7 +45,7 @@ export class ApiService {
   // GET Embassies by nation ID (login required)
   getEmbassiesByNationId$(nationId: string): Observable<EmbassyModel[]> {
     return this.http
-      .get(`${ENV.BASE_API}nation/${nationId}/embassys`, {
+      .get(`${ENV.BASE_API}nation/${nationId}/embassies`, {
         headers: new HttpHeaders().set('Authorization', this._authHeader)
       })
       .catch(this._handleError);

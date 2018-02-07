@@ -23,6 +23,8 @@ export class EmbassyComponent implements OnInit, OnDestroy {
   userEmbassy: EmbassyModel;
   totalAttending: number;
   footerTense: string;
+  showEditForm: boolean;
+  editBtnText: string;
   showAllEmbassies = false;
   showEmbassiesText = 'View All Embassies';
 
@@ -35,6 +37,7 @@ export class EmbassyComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.footerTense = !this.nationPast ? 'plan to attend this nation.' : 'attended this nation.';
     this._getEmbassies();
+    this.toggleEditForm(false);
   }
 
   private _getEmbassies() {
@@ -61,19 +64,49 @@ export class EmbassyComponent implements OnInit, OnDestroy {
     this.showEmbassiesText = this.showAllEmbassies ? 'Hide Embassies' : 'Show All Embassies';
   }
 
-  private _updateEmbassyState() {
-    // @TODO: We will add more functionality here later
-    this._setUserEmbassyGetAttending();
+  toggleEditForm(setVal?: boolean) {
+    this.showEditForm = setVal !== undefined ? setVal : !this.showEditForm;
+    this.editBtnText = this.showEditForm ? 'Cancel Edit' : 'Edit My Embassy';
   }
 
-  private _setUserEmbassyGetAttending() {
+  onSubmitEmbassy(e) {
+    if (e.embassy) {
+      this.userEmbassy = e.embassy;
+      this._updateEmbassyState(true);
+      this.toggleEditForm(false);
+    }
+  }
+
+  private _updateEmbassyState(changed?: boolean) {
+    // If RSVP matching user ID is already
+    // in RSVP array, set as initial RSVP
+    const _initialUserRsvp = this.embassies.filter(rsvp => {
+      return rsvp.userId === this.auth.userProfile.sub;
+    })[0];
+
+    // If user has not RSVPed before and has made
+    // a change, push new RSVP to local RSVPs store
+    if (!_initialUserRsvp && this.userEmbassy && changed) {
+      this.embassies.push(this.userEmbassy);
+    }
+    this._setUserEmbassyGetAttending(changed);
+  }
+
+  private _setUserEmbassyGetAttending(changed?: boolean) {
     // Iterate over Embassies to get/set user's Embassy
     // and get total number of attending guests
     let guests = 0;
     const embassyArr = this.embassies.map(embassy => {
       // If user has an existing Embassy
       if (embassy.userId === this.auth.userProfile.sub) {
-        this.userEmbassy = embassy;
+        if (changed) {
+          // If user edited their RSVP, set with updated data
+          embassy = this.userEmbassy;
+        } else {
+          // If no changes were made, set userRsvp property
+          // (This applies on ngOnInit)
+          this.userEmbassy = embassy;
+        }
       }
       // Count total number of attendees
       // + additional guests

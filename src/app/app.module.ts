@@ -22,6 +22,8 @@ import { AdminComponent } from './pages/admin/admin.component';
 import { NationComponent } from './pages/nation/nation.component';
 import { NationDetailComponent } from './pages/nation/nation-detail/nation-detail.component';
 import { EmbassyComponent } from './pages/nation/embassy/embassy.component';
+import { EmbassyFormComponent } from './pages/nation/embassy/embassy-form/embassy-form.component';
+import { SubmittingComponent } from './core/forms/submitting.component';
 
 
 @NgModule({
@@ -35,7 +37,9 @@ import { EmbassyComponent } from './pages/nation/embassy/embassy.component';
     AdminComponent,
     NationComponent,
     NationDetailComponent,
-    EmbassyComponent
+    EmbassyComponent,
+    EmbassyFormComponent,
+    SubmittingComponent
   ],
   imports: [
     BrowserModule,

@@ -11,39 +11,53 @@
 
   <ng-template [ngIf]="!nationPast && embassies">
     <!-- User has Embassyed -->
-    <ng-template [ngIf]="userRsvp">
+    <ng-template [ngIf]="userEmbassy">
       <p class="card-block lead">You responded to this nation with the following information:</p>
 
-      <ul class="list-group list-group-flush">
+      <ul *ngIf="!showEditForm" class="list-group list-group-flush">
         <li class="list-group-item">
-          <strong>Name:</strong>{{userRsvp.name}}
+          <strong>Name:</strong>{{userEmbassy.name}}
         </li>
         <li class="list-group-item">
-          <strong>Attending:</strong>{{utils.booleanToText(userRsvp.attending)}}
+          <strong>Attending:</strong>{{utils.booleanToText(userEmbassy.attending)}}
         </li>
-        <li *ngIf="userRsvp.attending && userRsvp.guests" class="list-group-item">
-          <strong>Additional Guests:</strong>{{userRsvp.guests}}
+        <li *ngIf="userEmbassy.attending && userEmbassy.guests" class="list-group-item">
+          <strong>Additional Guests:</strong>{{userEmbassy.guests}}
         </li>
-        <li *ngIf="userRsvp.comments" class="list-group-item">
-          <strong>Comments:</strong><span [innerHTML]="userRsvp.comments"></span>
+        <li *ngIf="userEmbassy.comments" class="list-group-item">
+          <strong>Comments:</strong><span [innerHTML]="userEmbassy.comments"></span>
         </li>
       </ul>
-      <!-- @TODO: Toggle Embassy form (update existing) will go here -->
+
+      <div class="card-block">
+        <button
+          class="btn btn-info"
+          [ngClass]="{'btn-info': !showEditForm, 'btn-warning': showEditForm}"
+          (click)="toggleEditForm()">{{editBtnText}}</button>
+
+        <app-embassy-form
+          *ngIf="showEditForm"
+          [nationId]="nationId"
+          [embassy]="userEmbassy"
+          (submitEmbassy)="onSubmitEmbassy($nation)"></app-embassy-form>
+      </div>
     </ng-template>
 
     <!-- No Embassy yet -->
-    <div *ngIf="!userRsvp" class="card-block">
+    <div *ngIf="!userEmbassy" class="card-block">
       <p class="lead">Fill out the form below to respond:</p>
-      <!-- @TODO: Embassy form (add new Embassy) will go here -->
+      <app-embassy-form
+        [nationId]="nationId"
+        (submitEmbassy)="onSubmitEmbassy($nation)"></app-embassy-form>
     </div>
   </ng-template>
 
   <!-- All Embassys -->
   <div class="card-block text-right">
-    <button (click)="toggleShowRsvps()" class="btn btn-link btn-sm">{{showRsvpsText}}</button>
+    <button (click)="toggleShowEmbassys()" class="btn btn-link btn-sm">{{showEmbassysText}}</button>
   </div>
 
-  <section class="allRsvps" *ngIf="showAllRsvps">
+  <section class="allEmbassys" *ngIf="showAllEmbassys">
     <div class="card-block">
       <h3 class="card-title text-center">All Embassys</h3>
       <p *ngIf="!embassies.length" class="lead">There are currently no Embassys for this nation.</p>

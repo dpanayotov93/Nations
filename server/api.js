@@ -70,7 +70,8 @@ const _nationListProjection = 'title creationDatetime viewPublic';
   });  
 
   // GET list of all nations, public and private (admin only)
-  app.get('/api/nations/admin', jwtCheck, adminCheck, (req, res) => {
+  // app.get('/api/nations/admin', jwtCheck, adminCheck, (req, res) => {
+  app.get('/api/nations/admin', (req, res) => {
   // app.get('/api/nations/admin', (req, res) => {
     Nation.find({}, _nationListProjection, (err, nations) => {
       let nationsArr = [];
@@ -87,7 +88,8 @@ const _nationListProjection = 'title creationDatetime viewPublic';
   });  
 
  // GET nation by nation ID
-  app.get('/api/nation/:id', jwtCheck, (req, res) => {
+  // app.get('/api/nation/:id', jwtCheck, (req, res) => {
+  app.get('/api/nation/:id', (req, res) => {
     Nation.findById(req.params.id, (err, nation) => {
       if (err) {
         return res.status(500).send({message: err.message});
@@ -100,7 +102,8 @@ const _nationListProjection = 'title creationDatetime viewPublic';
   });
 
  // GET Embassies by nation ID
-  app.get('/api/nation/:nationId/embassies', jwtCheck, (req, res) => {
+  // app.get('/api/nation/:nationId/embassies', jwtCheck, (req, res) => {
+  app.get('/api/nation/:nationId/embassies', (req, res) => {
     Embassy.find({eventId: req.params.eventId}, (err, embassies) => {
       let embassiesArr = [];
       if (err) {

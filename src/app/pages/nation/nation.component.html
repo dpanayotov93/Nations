@@ -25,7 +25,7 @@
               class="nav-link"
               [routerLink]="[]"
               [queryParams]="{tab: 'embassy'}"
-              [ngClass]="{'active': utils.tabIs(tab, 'embassy')}">RSVP</a>
+              [ngClass]="{'active': utils.tabIs(tab, 'embassy')}">Embassies</a>
           </li>
         </ul>
       </div>
@@ -35,9 +35,11 @@
         *ngIf="utils.tabIs(tab, 'details')"
         [nation]="nation"></app-nation-detail>
 
-      <!-- Nation RSVP tab -->
+      <!-- Nation Embassy tab -->
       <app-embassy
-        *ngIf="utils.tabIs(tab, 'embassy')"></app-embassy>
+        *ngIf="utils.tabIs(tab, 'embassy')"
+        [nationId]="nation._id"
+        [nationPast]="nationPast"></app-embassy>
     </div>
   </ng-template>
 

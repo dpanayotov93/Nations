@@ -15,7 +15,6 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class EmbassyComponent implements OnInit, OnDestroy {
   @Input() nationId: string;
-  @Input() nationPast: boolean;
   embassiesSub: Subscription;
   embassies: EmbassyModel[];
   loading: boolean;
@@ -35,7 +34,7 @@ export class EmbassyComponent implements OnInit, OnDestroy {
     public fs: FilterSortService) { }
 
   ngOnInit() {
-    this.footerTense = !this.nationPast ? 'plan to attend this nation.' : 'attended this nation.';
+    this.footerTense = 'have embassies in this nation.';
     this._getEmbassies();
     this.toggleEditForm(false);
   }

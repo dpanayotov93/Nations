@@ -4,11 +4,6 @@
   <h1 class="text-center">{{pageTitle}}</h1>
   <!-- Nation -->
   <ng-template [ngIf]="nation">
-    <!-- Nation is over -->
-    <p *ngIf="nationPast" class="alert alert-danger">
-      <strong>This nation is over.</strong>
-    </p>
-
     <div class="card">
       <!-- Nation tab navigation -->
       <div class="card-header">
@@ -38,8 +33,7 @@
       <!-- Nation Embassy tab -->
       <app-embassy
         *ngIf="utils.tabIs(tab, 'embassy')"
-        [nationId]="nation._id"
-        [nationPast]="nationPast"></app-embassy>
+        [nationId]="nation._id"></app-embassy>
     </div>
   </ng-template>
 

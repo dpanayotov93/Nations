@@ -1,10 +1,10 @@
 <div class="card-block">
-  <h2 class="card-title text-center">Nation Details</h2>
+  <h2 class="card-title text-center">{{nation.title}}</h2>
 </div>
 
 <ul class="list-group list-group-flush">
   <li class="list-group-item">
-    <strong>When:</strong>{{utils.nationDatesTimes(nation.startDatetime, nation.endDatetime)}}
+    <strong>When:</strong>{{utils.nationDatesTimes(nation.startDatetime, nation.startDatetime)}}
   </li>
   <li class="list-group-item">
     <strong>Where:</strong>{{nation.location}} (<a href="https://www.google.com/maps/dir//{{nation.location}}" target="_blank">get directions</a>)

@@ -33,19 +33,12 @@ export class UtilsService {
     const endTime = this.datePipe.transform(end, 'shortTime');
 
     if (startDate === endDate) {
-      return `${startDate}, ${startTime} - ${endTime}`;
+      return `${startDate}, ${startTime}`;
     } else {
       return `${startDate}, ${startTime} - ${endDate}, ${endTime}`;
     }
   }
-
-  nationPast(nationEnd): boolean {
-    // Check if nation has already ended
-    const now = new Date();
-    const then = new Date(nationEnd.toString());
-    return now >= then;
-  }
-
+  
   tabIs(currentTab: string, tab: string): boolean {
     // Check if current tab is tab name
     return currentTab === tab;

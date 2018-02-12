@@ -22,7 +22,6 @@ export class NationComponent implements OnInit, OnDestroy {
   loading: boolean;
   error: boolean;
   tab: string;
-  nationPast: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -56,7 +55,6 @@ export class NationComponent implements OnInit, OnDestroy {
           this.nation = res;
           this._setPageTitle(this.nation.title);
           this.loading = false;
-          this.nationPast = this.utils.nationPast(this.nation.creationDatetime);
         },
         err => {
           console.error(err);

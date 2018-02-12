@@ -4,12 +4,7 @@
 </div>
 
 <ng-template [ngIf]="utils.isLoaded(loading)">
-  <!-- Nation is over -->
-  <p *ngIf="nationPast" class="card-block lead">
-    You cannot Embassy to an nation that has already ended.
-  </p>
-
-  <ng-template [ngIf]="!nationPast && embassies">
+  <ng-template [ngIf]="embassies">
     <!-- User has Embassyed -->
     <ng-template [ngIf]="userEmbassy">
       <p class="card-block lead">You responded to this nation with the following information:</p>

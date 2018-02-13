@@ -1,9 +1,10 @@
 <header id="header" class="header">
-  <div class="header-page bg-primary">
-    <a class="toggle-offcanvas bg-primary" (click)="toggleNav()"><span></span></a>
-    <h1 class="header-page-siteTitle">
+  <div class="header-page bg-primary" style="text-align: center">
+    <a class="toggle-offcanvas float-left bg-primary" (click)="toggleNav()"><span></span></a>
+    <h1 class="header-page-siteTitle w-25 float-left">
       <a routerLink="/">Nations Rise</a>
     </h1>
+    <img class="flag" src="http://via.placeholder.com/125x75" alt="[COUNTRY] flag">
     <div class="header-page-authStatus">
       <a *ngIf="!auth.loggedIn" (click)="auth.login()">Log In</a>
       <span *ngIf="auth.loggedIn">

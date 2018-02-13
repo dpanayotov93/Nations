@@ -1,21 +1,49 @@
 <div class="card-block">
   <h2 class="card-title text-center">{{nation.title}}</h2>
+  <figure class="mx-auto d-block figure" style="width: 250px;">
+    <img class="img-thumbnail flag" src="http://via.placeholder.com/250x150" alt="[COUNTRY] flag">
+    <figcaption class="figure-caption" style="text-align: center;">A caption for the above image.</figcaption>
+  </figure>
 </div>
 
-<ul class="list-group list-group-flush">
-  <li class="list-group-item">
-    <strong>When:</strong>{{utils.nationDatesTimes(nation.startDatetime, nation.startDatetime)}}
-  </li>
-  <li class="list-group-item">
-    <strong>Where:</strong>{{nation.location}} (<a href="https://www.google.com/maps/dir//{{nation.location}}" target="_blank">get directions</a>)
-  </li>
-</ul>
+<div class="container">
+  <div class="row">
+    <div class="col-md w-50">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <strong>Leader:</strong>[LEADER.TITLE] [LEADER.NAME]
+        </li>
+        <li class="list-group-item">
+          <strong>Government:</strong>[GOVERNMENT]
+        </li>
+        <li class="list-group-item">
+          <strong>Established:</strong>{{utils.nationDatesTimes(nation.creationDatetime, nation.creationDatetime)}}
+        </li>
+      </ul>
+    </div>    
+    <div class="col-md w-50">
+      <ul class="list-group list-group-flush align-self-end">
+        <li class="list-group-item">
+          <strong>Established:</strong>{{utils.nationDatesTimes(nation.creationDatetime, nation.creationDatetime)}}
+        </li>
+        <li class="list-group-item">
+          <strong>Location::</strong>{{nation.location}} (<a href="https://www.google.com/maps/dir//{{nation.location}}" target="_blank">get directions</a>)
+        </li>
+        <li class="list-group-item">
+          <strong>Location::</strong>{{nation.location}} (<a href="https://www.google.com/maps/dir//{{nation.location}}" target="_blank">get directions</a>)
+        </li>
+      </ul>      
+    </div>  
+  </div>
+</div>
+
+<hr>
 
 <p
   *ngIf="nation.description"
   class="card-block lead"
   [innerHTML]="nation.description"></p>
 
-<div *ngIf="auth.isAdmin" class="card-footer text-right small">
-  <a [routerLink]="['/admin/nation/update', nation._id]">Edit</a>
+<div class="card-footer text-right small">
+  <a *ngIf="auth.isAdmin" [routerLink]="['/admin/nation/update', nation._id]">Edit</a>
 </div>

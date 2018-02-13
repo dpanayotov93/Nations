@@ -31,7 +31,7 @@ export class UtilsService {
     const startTime = this.datePipe.transform(start, 'shortTime');
     const endDate = this.datePipe.transform(end, _shortDate);
     const endTime = this.datePipe.transform(end, 'shortTime');
-
+    console.log(start, end);
     if (startDate === endDate) {
       return `${startDate}, ${startTime}`;
     } else {
